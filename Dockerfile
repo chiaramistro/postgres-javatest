@@ -1,4 +1,3 @@
 FROM openjdk:8
-COPY ./PostgreSQLJDBC/ /tmp
-WORKDIR /tmp
+EXPOSE 8080
 ENTRYPOINT ["java", "Main"]
