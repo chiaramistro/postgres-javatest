@@ -1,3 +1,4 @@
-FROM openjdk:8
-EXPOSE 8080
-ENTRYPOINT ["java", "App"]
+FROM openjdk:11
+COPY ./bin /tmp
+WORKDIR /tmp
+ENTRYPOINT ["java","App"]
