@@ -6,51 +6,35 @@ import java.sql.Statement;
 
 public class App {
 
-	//postgresql://postgres:password@localhost:5432/postgres
-	private final String url = "jdbc:postgresql://localhost:5432/pgexample";
-	    private final String user = "postgres";
+	private final String url = "jdbc:postgresql://172.18.0.1:5432/pgexample";
+	    private final String user = "admin";
 	    private final String password = "password";
 
 	    /**
 	     * Connect to the PostgreSQL database
 	     *
 	     * @return a Connection object
+	     * @throws ClassNotFoundException 
+	**/
 	     
-	    public Connection connect() {
+	    public Connection connect() throws ClassNotFoundException {
 	        Connection conn = null;
-	        try {
+		 try {
+			 Class.forName("com.example.jdbc.Driver");
 	            conn = DriverManager.getConnection(url, user, password);
 	            System.out.println("Connected to the PostgreSQL server successfully.");
-	        } catch (SQLException e) {
+   } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 			}
-
 	        return conn;
 	    }
-	    */
-	    
-	    public void connect() {
-	    	
-	          try {
-	              Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres","password");
-	              Statement stmt = con.createStatement();
-	              ResultSet rs = stmt.executeQuery("SELECT * FROM cats");
-
-	              while (rs.next()) {
-	                  int id = rs.getInt("id");
-	                  String name = rs.getString("name");
-	                  System.out.println(id + "   " + name);
-
-	              }
-	          } catch (SQLException e) {
-	              System.out.println("SQL exception occured" + e);
-	          }
-	      }
+	
 
 	    /**
 	     * @param args the command line arguments
+	     * @throws ClassNotFoundException 
 	     */
-	    public static void main(String[] args) {
+	    public static void main(String[] args) throws ClassNotFoundException {
 	        App app = new App();
 				
 	        app.connect();
