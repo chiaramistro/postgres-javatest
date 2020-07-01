@@ -1,15 +1,13 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class App {
-
-	private final String url = "jdbc:postgresql://172.18.0.1:5432/pgexample";
-	    private final String user = "admin";
-	    private final String password = "password";
-
+	
+	//Link per locale
+	//private final String url = "jdbc:postgresql://localhost/postgres?user=postgres&password=postgres";
+	
+	//Link per Docker container
+	private final String url = "jdbc:postgresql://172.19.0.1:5432/postgres?user=postgres&password=postgres";
+	
 	    /**
 	     * Connect to the PostgreSQL database
 	     *
@@ -20,8 +18,8 @@ public class App {
 	    public Connection connect() throws ClassNotFoundException {
 	        Connection conn = null;
 		 try {
-			 Class.forName("com.example.jdbc.Driver");
-	            conn = DriverManager.getConnection(url, user, password);
+			 Class.forName("org.postgresql.Driver");
+	          conn = DriverManager.getConnection(url);
 	            System.out.println("Connected to the PostgreSQL server successfully.");
    } catch (SQLException e) {
 	            System.out.println(e.getMessage());
