@@ -7,4 +7,3 @@ CREATE TABLE cats (
   name VARCHAR(20) 
 );
 
-
